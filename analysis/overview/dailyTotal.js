@@ -4,12 +4,12 @@ const _ = require("lodash");
 const readFiles = require("read-files-promise");
 
 readFiles([
-  "data/Q0.csv",
-  "data/Q1.csv",
-  "data/Q2.csv",
-  "data/Q3.csv",
-  "data/Q4.csv",
-  "data/Q5.csv"
+  "../data/Q0.csv",
+  "../data/Q1.csv",
+  "../data/Q2.csv",
+  "../data/Q3.csv",
+  "../data/Q4.csv",
+  "../data/Q5.csv"
 ]).then(onFulfilled, onRejected);
 
 function onFulfilled(buffers) {
@@ -44,5 +44,5 @@ function onFulfilled(buffers) {
 }
 
 function onRejected(err) {
-  console.log("Cannot read the file.");
+  console.log("Cannot read the file: ", err);
 }
