@@ -1,3 +1,7 @@
+/* 
+  Daily Total Graph
+*/
+
 let dateFormat = "YYYY-MM-DD";
 let daily_totals_data = daily_totals.map(dataObj => {
   return {
@@ -34,7 +38,7 @@ var cfg = {
     labels: labels,
     datasets: [
       {
-        label: "Total (sum) number of trips per day",
+        label: "Total (sum) number of trips",
         data: data,
         type: "line",
         pointRadius: 0,
@@ -62,3 +66,9 @@ var cfg = {
   }
 };
 var chart = new Chart(ctx, cfg);
+
+document.getElementById("update").addEventListener("click", function() {
+  var type = document.getElementById("type").value;
+  chart.config.data.datasets[0].type = type;
+  chart.update();
+});
