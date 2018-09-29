@@ -1,26 +1,21 @@
-const fs = require("fs");
 const d3 = require("d3");
 const _ = require("lodash");
+const stationInformation = require("../data/stationInformation.js").stations;
 
-let stations = require("../data/stationInformation.js").stations;
-let regions = require("../data/regionInformation.js").regions;
+/* ANALYSIS CODE GOES BELOW */
 
-stations.forEach(function(station) {
-  var result = regions.filter(function(region) {
-    return station.region_id === Number(region.region_id);
-  });
-  station.region = result[0] !== undefined ? result[0].name : null;
+let regionStationCount = {};
+
+stationInformation.forEach(station => {
+  if (regionStationCount[station.region_id]) {
+    regionStationCount[station.region_id]++;
+  } else {
+    regionStationCount[station.region_id] = 1;
+  }
 });
-console.log(stations);
 
-var stationsByRegions = d3
-  .nest()
-  .key(function(d) {
-    return d.region;
-  })
-  .rollup(function(v) {
-    return v.length;
-  })
-  .entries(stations);
-
-console.log(JSON.stringify(stationsByRegions));
+console.log(regionStationCount);
+/* WANT TO MAKE A FILE? */
+// fs.writeFile("file_name.json", result, function(err) {
+//   console.log("File successfully written!");
+// });

@@ -22,6 +22,34 @@ function onFulfilled(buffers) {
 
   let data = _.concat(...buffers);
 
+  let tripsByMonthByUserType = d3
+    .nest()
+    .key(function(d) {
+      return d.start_time.split(" ")[0].split("-")[1];
+    })
+    .key(function(d) {
+      return d.user_type;
+    })
+    .rollup(function(v) {
+      return v.length;
+    })
+    .entries(data);
+
+  let tripsByCustomers = [];
+  let tripsBySubscribers = [];
+
+  for (let i = 0; i < tripsByMonthByUserType.length; i++) {
+    tripsByMonthByUserType[i].values.forEach(userType => {
+      if (userType.key === "Subscriber") {
+        tripsBySubscribers.push(userType.value);
+      } else if (userType.key === "Customer") {
+        tripsByCustomers.push(userType.value);
+      }
+    });
+  }
+  console.log("Subscribers", tripsBySubscribers);
+  console.log("Customers", tripsByCustomers);
+
   /* ANALYSIS CODE GOES BELOW */
 
   /* WANT TO MAKE A FILE? */

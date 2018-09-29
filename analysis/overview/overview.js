@@ -4,12 +4,14 @@ const _ = require("lodash");
 const readFiles = require("read-files-promise");
 
 readFiles([
-  "../data/Q0.csv",
-  "../data/Q1.csv",
-  "../data/Q2.csv",
-  "../data/Q3.csv",
-  "../data/Q4.csv",
-  "../data/Q5.csv"
+  "../data/201801.csv",
+  "../data/201802.csv",
+  "../data/201803.csv",
+  "../data/201804.csv",
+  "../data/201805.csv",
+  "../data/201806.csv",
+  "../data/201807.csv",
+  "../data/201808.csv"
 ]).then(onFulfilled, onRejected);
 
 function onFulfilled(buffers) {
@@ -20,23 +22,17 @@ function onFulfilled(buffers) {
 
   let data = _.concat(...buffers);
 
-  console.log("Data length is 1,142,896: ", 1142896 === data.length);
+  console.log("Number of trips", data.length);
+
+  let bikeIds = data.map(trip => {
+    return trip.bike_id;
+  });
+
+  let uniqueBikeIds = _.uniq(bikeIds);
+
+  console.log("Number of bikes", uniqueBikeIds.length);
 
   /* ANALYSIS CODE GOES BELOW */
-
-  let avgDuration = d3
-    .nest()
-    .key(function(d) {
-      return d.user_type;
-    })
-    .rollup(function(v) {
-      return d3.mean(v, function(d) {
-        return d.duration_sec;
-      });
-    })
-    .object(data);
-
-  console.log(JSON.stringify(avgDuration));
 
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {

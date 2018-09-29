@@ -5,12 +5,14 @@ const readFiles = require("read-files-promise");
 const stationInformation = require("../data/stationInformation.js").stations;
 
 readFiles([
-  "../data/Q0.csv",
-  "../data/Q1.csv",
-  "../data/Q2.csv",
-  "../data/Q3.csv",
-  "../data/Q4.csv",
-  "../data/Q5.csv"
+  "../data/201801.csv",
+  "../data/201802.csv",
+  "../data/201803.csv",
+  "../data/201804.csv",
+  "../data/201805.csv",
+  "../data/201806.csv",
+  "../data/201807.csv",
+  "../data/201808.csv"
 ]).then(onFulfilled, onRejected);
 
 function onFulfilled(buffers) {
@@ -21,7 +23,7 @@ function onFulfilled(buffers) {
 
   let data = _.concat(...buffers);
 
-  console.log("Data length is 1,142,896: ", 1142896 === data.length);
+  /* ANALYSIS CODE GOES BELOW */
 
   let stationActivityById = data.reduce((accum, trip) => {
     if (accum[trip.start_station_id]) {
@@ -58,10 +60,6 @@ function onFulfilled(buffers) {
       }
     }
   }
-
-  console.log(totalTripsByRegion);
-
-  /* ANALYSIS CODE GOES BELOW */
 
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {
