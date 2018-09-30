@@ -29,24 +29,18 @@ function onFulfilled(buffers) {
   var tripsByAgeAndGender = d3
     .nest()
     .key(function(d) {
-      return d.member_gender;
-    })
-    .key(function(d) {
       return calculateAge(d.member_birth_year);
     })
     .sortKeys(function(a, b) {
       return Number(a) - Number(b);
     })
+    .key(function(d) {
+      return d.member_gender;
+    })
     .rollup(function(v) {
       return v.length;
     })
     .entries(data);
-
-  tripsByAgeAndGender = tripsByAgeAndGender
-    .filter(gender => gender.key === "Male" || gender.key === "Female")
-    .map(gender => {
-      gender = gender.values.filter(ages => !isNaN(ages.key));
-    });
 
   console.log(JSON.stringify(tripsByAgeAndGender));
 

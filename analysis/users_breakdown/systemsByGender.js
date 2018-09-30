@@ -4,13 +4,16 @@ const _ = require("lodash");
 const readFiles = require("read-files-promise");
 
 readFiles([
-  "../data/201804.csv",
-  "../data/201805.csv",
-  "../data/201806.csv",
-  "../data/citi/201804.csv",
-  "../data/citi/201805.csv",
-  "../data/citi/201806.csv",
-  "../data/divvy/2018_Q2.csv"
+  // "../data/201804.csv",
+  // "../data/201805.csv",
+  // "../data/201806.csv",
+  // "../data/citi/201804.csv",
+  // "../data/citi/201805.csv",
+  // "../data/citi/201806.csv",
+  // "../data/divvy/2018_Q2.csv"
+  "../data/bluebikes/201804.csv",
+  "../data/bluebikes/201805.csv",
+  "../data/bluebikes/201806.csv"
 ]).then(onFulfilled, onRejected);
 
 function onFulfilled(buffers) {
@@ -19,29 +22,9 @@ function onFulfilled(buffers) {
     return (buffer = d3.csvParse(buffer));
   });
 
-  let fordGoBike = buffers.slice(0, 3);
-  fordGoBike = _.concat(...fordGoBike);
+  let bluebikes = _.concat(...buffers);
 
-  let citi = buffers.slice(3, 6);
-  citi = _.concat(...citi);
-
-  let divvy = buffers[6];
-
-  checkFordGoBikeData(fordGoBike);
-  checkCitiData(citi);
-  checkDivvyData(divvy);
-
-  var fordGoBikeByGender = d3
-    .nest()
-    .key(function(d) {
-      return d.member_gender;
-    })
-    .rollup(function(v) {
-      return v.length;
-    })
-    .entries(fordGoBike);
-
-  var citiByGender = d3
+  var blueBikesByGender = d3
     .nest()
     .key(function(d) {
       return d.gender;
@@ -49,21 +32,54 @@ function onFulfilled(buffers) {
     .rollup(function(v) {
       return v.length;
     })
-    .entries(citi);
+    .entries(bluebikes);
 
-  var divvyByGender = d3
-    .nest()
-    .key(function(d) {
-      return d.gender;
-    })
-    .rollup(function(v) {
-      return v.length;
-    })
-    .entries(divvy);
+  // let fordGoBike = buffers.slice(0, 3);
+  // fordGoBike = _.concat(...fordGoBike);
 
-  console.log("ford", fordGoBikeByGender);
-  console.log("citi", citiByGender);
-  console.log("divvy", divvyByGender);
+  // let citi = buffers.slice(3, 6);
+  // citi = _.concat(...citi);
+
+  // let divvy = buffers[6];
+
+  // checkFordGoBikeData(fordGoBike);
+  // checkCitiData(citi);
+  // checkDivvyData(divvy);
+
+  // var fordGoBikeByGender = d3
+  //   .nest()
+  //   .key(function(d) {
+  //     return d.member_gender;
+  //   })
+  //   .rollup(function(v) {
+  //     return v.length;
+  //   })
+  //   .entries(fordGoBike);
+
+  // var citiByGender = d3
+  //   .nest()
+  //   .key(function(d) {
+  //     return d.gender;
+  //   })
+  //   .rollup(function(v) {
+  //     return v.length;
+  //   })
+  //   .entries(citi);
+
+  // var divvyByGender = d3
+  //   .nest()
+  //   .key(function(d) {
+  //     return d.gender;
+  //   })
+  //   .rollup(function(v) {
+  //     return v.length;
+  //   })
+  //   .entries(divvy);
+
+  // console.log("ford", fordGoBikeByGender);
+  // console.log("citi", citiByGender);
+  // console.log("divvy", divvyByGender);
+  console.log("bluebikes", blueBikesByGender);
 
   /* ANALYSIS CODE GOES BELOW */
 
