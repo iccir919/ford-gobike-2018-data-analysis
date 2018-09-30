@@ -62,14 +62,76 @@
                     <div class="row">
                         <div class="col">
                             <div class="card">
+                                <div class="card-body">
+                                    <div class="typography-line">
+                                        <blockquote>
+                                            <p class="mb-0  blockquote blockquote-primary">The way we look at the health
+                                                of our bike lanes and our bike lane network is how many women and children
+                                                are using the lanes.</p>
+                                            <footer class="blockquote-footer">Janette Sadik-Khan, chief transportation official
+                                                for New York City in 2007 in <cite title="Source Title"><a href="https://www.youtube.com/watch?v=E85HMNJix_o"
+                                                        target="_blank">Why protected bike lanes are more valuable than parking
+                                                        spaces
+                                                    </a>
+                                                </cite></footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Total Trips By Subscriber Age and Gender</h4>
+                                    <h4 class="card-title">San Francisco Bay Area</h4>
+                                    <p class="card-category">Ford GoBike share system</p>
                                 </div>
                                 <div class="card-body ">
-                                    <div id="container" style="width:100%;">
-                                        <canvas id="canvas"></canvas>
+                                    <div id="canvas-holder">
+                                        <canvas id="ford-go-bike"></canvas>
                                     </div>
-
+                                </div>
+                                <div class="card-footer ">
+                                    <div class="stats">
+                                        <i class="fa fa-clock-o"></i> from April 1, 2018 - June 31, 2018
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Chicago</h4>
+                                    <p class="card-category">Divvy bike share system</p>
+                                </div>
+                                <div class="card-body ">
+                                    <div id="canvas-holder">
+                                        <canvas id="divvy"></canvas>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <div class="stats">
+                                        <i class="fa fa-clock-o"></i> from April 1, 2018 - June 31, 2018
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">New York</h4>
+                                    <p class="card-category">Citi bike share system</p>
+                                </div>
+                                <div class="card-body ">
+                                    <div id="canvas-holder">
+                                        <canvas id="citi"></canvas>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <div class="stats">
+                                        <i class="fa fa-clock-o"></i> from April 1, 2018 - June 31, 2018
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +158,8 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Neil Ricci</a>, made with love for a better transportation tomorrow
+                            <a href="http://www.creative-tim.com">Neil Ricci</a>, made with love for a better transportation
+                            tomorrow
                         </p>
                     </nav>
                 </div>
@@ -116,7 +179,6 @@
 <script src="../assets/js/plugins/chart.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
-<script src="../assets/js/data/subscriber_gender_ages.js "></script>
-<script src="../assets/js/graphs/users.js "></script>
+<script src="../assets/js/pages/users.js "></script>
 
 </html>

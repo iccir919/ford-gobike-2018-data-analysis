@@ -15,6 +15,7 @@
     <!-- CSS Files -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
+    <link href="../assets/css/overview.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -36,7 +37,13 @@
                     <li class="nav-item">
                         <a class=" nav-link " href="./users.html ">
                             <i class="nc-icon nc-circle-09 "></i>
-                            <p>Users Profile</p>
+                            <p>Users Breakdown</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class=" nav-link " href="./stations.html ">
+                            <i class="nc-icon nc-circle-09 "></i>
+                            <p>Trips Outlook</p>
                         </a>
                     </li>
                 </ul>
@@ -46,7 +53,7 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500 ">
                 <div class=" container-fluid ">
-                    <a class="navbar-brand " href="#"> System Data Overview </a>
+                    <a class="navbar-brand " href="#"> 2018 System Data Overview </a>
                     <button href=" " class="navbar-toggler navbar-toggler-right " type="button " data-toggle="collapse
                         " aria-controls="navigation-index " aria-expanded="false " aria-label="Toggle navigation ">
                         <span class="navbar-toggler-bar burger-lines "></span>
@@ -57,98 +64,116 @@
             </nav>
             <!-- End Navbar -->
 
-            <div class="content ">
-                <div class="container-fluid ">
+            <div class="content">
+                <div class="container-fluid">
                     <div class="row">
-                        <!-- <div class="col-md-4">
+                        <div class="col-md-4">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">User Type</h4>
+                                    <h4 class="card-title">About</h4>
+                                    <small class="text-muted">The data analyzed starts on Janaury 1, 2018 and ends on August
+                                        31, 2018</small>
                                 </div>
                                 <div class="card-body ">
-                                </div>
-                                <div class="card-footer ">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card  card-tasks">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Tasks</h4>
-                                    <p class="card-category">Backend development</p>
-                                </div>
-                                <div class="card-body">
-
-                                </div>
-                                <div class="card-footer ">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card  card-tasks">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Tasks</h4>
-                                    <p class="card-category">Backend development</p>
-                                </div>
-                                <div class="card-body">
-
-                                </div>
-                                <div class="card-footer ">
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="row ">
-                        <div class="col ">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title ">Total Trips by Day</h4>
-                                </div>
-                                <div class="card-body ">
-                                    <div style="width:100%;">
-                                        <canvas id="myChart"></canvas>
+                                    <div class="table-responsive table-full-width">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        Number of trips
+                                                    </td>
+                                                    <td>1,210,548</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Number of bikes</td>
+                                                    <td>4,009</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Number of stations</td>
+                                                    <td>316</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                    <hr>
+                                    <p class="card-text text-center">Operating in these regions: San Francisco, San Jose,
+                                        Oakland, Berkeley, and Emeryville
+                                    </p>
                                 </div>
                                 <div class="card-footer ">
-                                    Chart Type:
-                                    <select id="type">
-                                        <option value="line">Line</option>
-                                        <option value="bar">Bar</option>
-                                    </select>
-                                    <button class="btn btn-primary btn-sm" type="submit" id="update">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Number of trips by month</h4>
+                                </div>
+                                <div class="card-body ">
+                                    <canvas id="tripsByMonth"></canvas>
+                                </div>
+                                <div class="card-footer ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Regional Sum of all Station Interactions vs. Station Count</h4>
+                                    <p class="card-category">Number of stations is the inner pie chart and the number of
+                                        station interactions is the outer pie chart
+                                    </p>
+                                </div>
+                                <div class="card-body ">
+                                    <canvas id="regionalComparisonChart"></canvas>
+                                </div>
+                                <div class="card-footer ">
+                                    <small class="text-muted">A bike departing or arriving a station counts as one interaction</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Individual Bike Useage</h4>
+                                </div>
+                                <div class="card-body ">
+                                    <canvas id="bikeUsage" width="400" height="320"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <footer class="footer ">
+                    <div class="container ">
+                        <nav>
+                            <ul class="footer-menu ">
+                                <li>
+                                    <a href="# ">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="# ">
+                                        Source
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="copyright text-center ">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>
+                                <a href="http://www.creative-tim.com ">Neil Ricci</a>, made with love for a better transportation
+                                tomorrow
+                            </p>
+                        </nav>
+                    </div>
+                </footer>
             </div>
-            <footer class="footer ">
-                <div class="container ">
-                    <nav>
-                        <ul class="footer-menu ">
-                            <li>
-                                <a href="# ">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="# ">
-                                    Source
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center ">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="http://www.creative-tim.com ">Neil Ricci</a>, made with love for a better transportation tomorrow
-                        </p>
-                    </nav>
-                </div>
-            </footer>
         </div>
-    </div>
 </body>
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js " type="text/javascript "></script>
@@ -162,7 +187,6 @@
 <script src="../assets/js/plugins/chart.js "></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1 " type="text/javascript "></script>
-<script src="../assets/js/data/daily_totals.js "></script>
-<script src="../assets/js/graphs/overview.js "></script>
+<script src="../assets/js/pages/overview.js "></script>
 
 </html>
