@@ -41,9 +41,9 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class=" nav-link " href="#">
-                            <i class="nc-icon nc-circle-09 "></i>
-                            <p>Trips Outlook</p>
+                        <a class="nav-link" href="#">
+                            <i class="nc-icon nc-compass-05"></i>
+                            <p>Trips Breakdown</p>
                         </a>
                     </li>
                 </ul>
@@ -63,39 +63,136 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-
-            <div class="map-container">
-                <div id="map"></div>
-            </div>
-
-
-            <footer class="footer ">
-                <div class="container ">
-                    <nav>
-                        <ul class="footer-menu ">
-                            <li>
-                                <a href="# ">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="# ">
-                                    Source
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center ">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="http://www.creative-tim.com ">Neil Ricci</a>, made with love for a better transportation
-                            tomorrow
-                        </p>
-                    </nav>
+            <div class="container-fluid px-0">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="card card-plain table-plain-bg">
+                            <div class="card-header ">
+                                <h4 class="card-title">Most popular trips</h4>
+                                <p class="card-category">Example: Ferry Building -> Embarcadero is counted the same as Embarcadero
+                                    -> Ferry Building
+                                </p>
+                            </div>
+                            <div class="card-body table-full-width table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <th>Rank</th>
+                                        <th>Station</th>
+                                        <th>Station</th>
+                                        <th>Trip count</th>
+                                        <th>Region</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <h6>Ferry Building</h6>
+                                            </td>
+                                            <td>
+                                                <h6>Embarcadero at Sansome St</h6>
+                                            </td>
+                                            <td>8,366</td>
+                                            <td>SF</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                                <h6>Steuart St at Market St</h6>
+                                            </td>
+                                            <td>
+                                                <h6>The Embarcadero at Sansome St</h6>
+                                            </td>
+                                            <td>5,581</td>
+                                            <td>SF</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>
+                                                <h6>Berry St at 4th St</h6>
+                                            </td>
+                                            <td>
+                                                <h6>Ferry Building</h6>
+                                            </td>
+                                            <td>5,459</td>
+                                            <td>SF</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>
+                                                <h6>19th Street BART Station</h6>
+                                            </td>
+                                            <td>
+                                                <h6>Grand Ave at Perkins St</h6>
+                                            </td>
+                                            <td>5,266</td>
+                                            <td>OAK</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>
+                                                <h6>19th Street BART Station</h6>
+                                            </td>
+                                            <td>
+                                                <h6>Bay Pl at Vernon St</h6>
+                                            </td>
+                                            <td>3,683</td>
+                                            <td>OAK</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>
+                                                <h6>Berry St at 4th St</h6>
+                                            </td>
+                                            <td>
+                                                <h6>Steuart St at Market St</h6>
+                                            </td>
+                                            <td>3,242</td>
+                                            <td>SF</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="map-container">
+                            <div id="map"></div>
+                        </div>
+                    </div>
                 </div>
-            </footer>
+            </div>
+            <div class="container">
+            </div>
         </div>
+
+
+        <footer class="footer ">
+            <div class="container ">
+                <nav>
+                    <ul class="footer-menu ">
+                        <li>
+                            <a href="# ">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="# ">
+                                Source
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-center ">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="http://www.creative-tim.com ">Neil Ricci</a>, made with love for a better transportation
+                        tomorrow
+                    </p>
+                </nav>
+            </div>
+        </footer>
+    </div>
     </div>
 </body>
 <!--   Core JS Files   -->

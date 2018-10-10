@@ -41,9 +41,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class=" nav-link " href="./stations.html ">
-                            <i class="nc-icon nc-circle-09 "></i>
-                            <p>Trips Outlook</p>
+                        <a class="nav-link" href="./trips.html">
+                            <i class="nc-icon nc-compass-05"></i>
+                            <p>Trips Breakdown</p>
                         </a>
                     </li>
                 </ul>
@@ -67,58 +67,71 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
+                        <div class="col">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Trips By Day</h4>
+                                </div>
+                                <div class="card-body ">
+                                    <div style="width:100%">
+                                        <canvas id="trips-by-day"></canvas>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <div class="row">
+                                        Data Selection:
+                                        <select id="subject">
+                                            <option value="region">By region</option>
+                                            <option value="gender">By gender</option>
+                                            <option value="memberType">By member type</option>
+                                        </select>
+                                        <button class="btn btn-info btn-fill" id="update">update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="card ">
                                 <div class="card-header ">
                                     <h4 class="card-title">About</h4>
-                                    <small class="text-muted">The data analyzed starts on Janaury 1, 2018 and ends on August
-                                        31, 2018</small>
+                                    <small class="text-muted">Analyzed date period: Janaury 1, 2018 - August 31, 2018</small>
                                 </div>
                                 <div class="card-body ">
                                     <div class="table-responsive table-full-width">
-                                        <table class="table table-hover">
+                                        <table class="table">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        Number of trips
+                                                        <h6>Number of trips</h6>
                                                     </td>
                                                     <td>1,210,548</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Number of bikes</td>
+                                                    <td>
+                                                        <h6>Number of bikes</h6>
+                                                    </td>
                                                     <td>4,009</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Number of stations</td>
+                                                    <td>
+                                                        <h6>Number of stations</h6>
+                                                    </td>
                                                     <td>316</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <hr>
-                                    <p class="card-text text-center">Operating in these regions: San Francisco, San Jose,
-                                        Oakland, Berkeley, and Emeryville
+                                    <p class="text-center">
+                                        <h6>Ford GoBike operates in these regions: San Francisco, San Jose, Oakland, Berkeley,
+                                            and Emeryville</h6>
                                     </p>
                                 </div>
-                                <div class="card-footer ">
-                                </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Number of trips by month</h4>
-                                </div>
-                                <div class="card-body ">
-                                    <canvas id="tripsByMonth"></canvas>
-                                </div>
-                                <div class="card-footer ">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="card ">
                                 <div class="card-header ">
                                     <h4 class="card-title">Regional Sum of all Station Interactions vs. Station Count</h4>
@@ -127,20 +140,10 @@
                                     </p>
                                 </div>
                                 <div class="card-body ">
-                                    <canvas id="regionalComparisonChart"></canvas>
+                                    <canvas id="stationInteractionChart"></canvas>
                                 </div>
                                 <div class="card-footer ">
                                     <small class="text-muted">A bike departing or arriving a station counts as one interaction</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Individual Bike Useage</h4>
-                                </div>
-                                <div class="card-body ">
-                                    <canvas id="bikeUsage" width="400" height="320"></canvas>
                                 </div>
                             </div>
                         </div>

@@ -104,69 +104,6 @@ function onFulfilled(buffers) {
     return result;
   }
 
-  console.log(JSON.stringify(bikesInSanFrancisco));
-
-  // var durationMap = {};
-  // durationByBikeAndRegion.forEach(bike => {
-  //   if (durationMap[bike.value]) {
-  //     durationMap[bike.value]++;
-  //   } else {
-  //     durationMap[bike.value] = 1;
-  //   }
-  // });
-
-  // var result = [];
-  // for (let hourDuration in durationMap) {
-  //   result.push({
-  //     x: hourDuration,
-  //     y: durationMap[hourDuration]
-  //   });
-  // }
-
-  // console.log(JSON.stringify(result));
-
-  // var groups = {
-  //   "1": 0,
-  //   "2": 0,
-  //   "3": 0,
-  //   "4": 0,
-  //   "5": 0,
-  //   "6": 0,
-  //   "7": 0,
-  //   "8": 0,
-  //   "9": 0,
-  //   "10": 0,
-  //   "11": 0
-  // };
-
-  // durationByBike.forEach(bike => {
-  //   if (bike.value <= 5) {
-  //     groups["1"]++;
-  //   } else if (bike.value <= 10) {
-  //     groups["2"]++;
-  //   } else if (bike.value <= 15) {
-  //     groups["3"]++;
-  //   } else if (bike.value <= 20) {
-  //     groups["4"]++;
-  //   } else if (bike.value <= 25) {
-  //     groups["5"]++;
-  //   } else if (bike.value <= 30) {
-  //     groups["6"]++;
-  //   } else if (bike.value <= 35) {
-  //     groups["7"]++;
-  //   } else if (bike.value <= 40) {
-  //     groups["8"]++;
-  //   } else if (bike.value <= 45) {
-  //     groups["9"]++;
-  //   } else if (bike.value <= 50) {
-  //     groups["10"]++;
-  //   } else {
-  //     groups["11"]++;
-  //   }
-  // });
-
-  console.log(JSON.stringify(groups));
-
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {
   //   console.log("File successfully written!");

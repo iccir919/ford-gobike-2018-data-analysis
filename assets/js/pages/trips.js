@@ -1,12 +1,64 @@
 var map;
-var sanFrancisco = {lat: 37.783726, lng: -122.408945};
-var eastBay = {lat: 37.830630, lng: -122.259762};
-var sanJose = {lat: 37.333959, lng:  -121.889189};
+var sanFrancisco = { lat: 37.783726, lng: -122.408945 };
+var berkeley = { lat: 37.864677, lng: -122.270469 };
+var oakland = { lat: 37.81926, lng: -122.275241 };
+var sanJose = { lat: 37.333959, lng: -121.889189 };
+
+// window.chartColors = {
+//   green: "rgb(75, 192, 192)",
+//   blue: "rgb(54, 162, 235)"
+// };
+
+// var tripsByDayAndUserTypeChartData = {
+//   labels: [
+//     "Sunday",
+//     "Monday",
+//     "Tuesday",
+//     "Wednesday",
+//     "Thursday",
+//     "Friday",
+//     "Saturday"
+//   ],
+//   datasets: [
+//     {
+//       label: "Subscribers",
+//       backgroundColor: window.chartColors.blue,
+//       borderColor: window.chartColors.blue,
+//       borderWidth: 1,
+//       data: [67404, 165831, 185622, 181258, 179738, 163043, 76140]
+//     },
+//     {
+//       label: "Customers",
+//       backgroundColor: window.chartColors.green,
+//       borderColor: window.chartColors.green,
+//       borderWidth: 1,
+//       data: [31080, 22709, 23030, 24287, 25151, 28678, 36577]
+//     }
+//   ]
+// };
+
+// window.onload = function() {
+//   var tripsByDayAndUserTypeCtx = document
+//     .getElementById("trips-by-day-and-user-type")
+//     .getContext("2d");
+//   window.tripsByDayAndUserType = new Chart(tripsByDayAndUserTypeCtx, {
+//     type: "bar",
+//     data: tripsByDayAndUserTypeChartData,
+//     options: {
+//       responsive: true,
+//       legend: {
+//         position: "top"
+//       }
+//     }
+//   });
+// };
 
 function initGoogleMaps() {
   var mapOptions = {
-    zoom: 14,
+    zoom: 13.5,
     center: sanFrancisco,
+    streetViewControl: false,
+    mapTypeControl: false,
     scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
     styles: [
       {
@@ -205,11 +257,11 @@ function initGoogleMaps() {
           geodesic: true,
           strokeColor: "#003478",
           strokeOpacity:
-            ((tripValues[startId][endId].value - 150) * (1 - 0.25)) /
+            ((tripValues[startId][endId].value - 150) * (0.6 - 0.1)) /
               (5684 - 150) +
-            0.25,
+            0.1,
           strokeWeight:
-            ((tripValues[startId][endId].value - 150) * (6 - 1)) /
+            ((tripValues[startId][endId].value - 150) * (9 - 1)) /
               (5684 - 150) +
             1
         });
@@ -246,9 +298,10 @@ function initGoogleMaps() {
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener("click", function() {
       map.setCenter(cords);
-      if(cityName === "San Francisco") map.setZoom(14);
-      if(cityName === "East Bay") map.setZoom(13);
-      if(cityName === "San Jose") map.setZoom(15);
+      if (cityName === "San Francisco") map.setZoom(13.5);
+      if (cityName === "Oakland") map.setZoom(13.65);
+      if (cityName === "San Jose") map.setZoom(14.75);
+      if (cityName === "Berkeley") map.setZoom(14.25);
     });
   }
 
@@ -256,24 +309,50 @@ function initGoogleMaps() {
   // constructor passing in this DIV.
 
   var sanFranciscoControlDiv = document.createElement("div");
-  var sanFranciscoControl = new AreaControl(sanFranciscoControlDiv, map, "San Francisco", sanFrancisco);
+  var sanFranciscoControl = new AreaControl(
+    sanFranciscoControlDiv,
+    map,
+    "San Francisco",
+    sanFrancisco
+  );
 
   sanFranciscoControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(sanFranciscoControlDiv);
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+    sanFranciscoControlDiv
+  );
 
-  var eastBayControlDiv = document.createElement("div");
-  var eastBayControl = new AreaControl(eastBayControlDiv, map, "East Bay", eastBay);
+  var berkeleyControlDiv = document.createElement("div");
+  var berkeleyControl = new AreaControl(
+    berkeleyControlDiv,
+    map,
+    "Berkeley",
+    berkeley
+  );
 
-  eastBayControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(eastBayControlDiv);
+  berkeleyControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(berkeleyControlDiv);
+
+  var oaklandControlDiv = document.createElement("div");
+  var oaklandControl = new AreaControl(
+    oaklandControlDiv,
+    map,
+    "Oakland",
+    oakland
+  );
+
+  oaklandControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(oaklandControlDiv);
 
   var sanJoseControlDiv = document.createElement("div");
-  var sanJoseControl = new AreaControl(sanJoseControlDiv, map, "San Jose", sanJose);
+  var sanJoseControl = new AreaControl(
+    sanJoseControlDiv,
+    map,
+    "San Jose",
+    sanJose
+  );
 
   sanJoseControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(sanJoseControlDiv);
-
-
 }
 
 const stations = {

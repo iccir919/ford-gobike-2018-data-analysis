@@ -2,7 +2,8 @@ const fs = require("fs");
 const d3 = require("d3");
 const _ = require("lodash");
 const readFiles = require("read-files-promise");
-const stationInformation = require("../data/stationInformation.js").stations;
+const stations = require("../data/stationInformation.js").stations;
+const moment = require("moment");
 
 readFiles([
   "../data/201801.csv",
@@ -25,41 +26,48 @@ function onFulfilled(buffers) {
 
   /* ANALYSIS CODE GOES BELOW */
 
-  let stationActivityById = data.reduce((accum, trip) => {
-    if (accum[trip.start_station_id]) {
-      accum[trip.start_station_id]++;
-    } else {
-      accum[trip.start_station_id] = 1;
-    }
-
-    if (accum[trip.end_station_id]) {
-      accum[trip.end_station_id]++;
-    } else {
-      accum[trip.end_station_id] = 1;
-    }
-
-    return accum;
-  }, {});
-
-  var totalTripsByRegion = {};
-
-  for (var stationId in stationActivityById) {
-    if (stationActivityById.hasOwnProperty(stationId)) {
-      var target = stationInformation.find(station => {
-        return station.station_id === stationId;
-      });
-
-      if (target) {
-        if (totalTripsByRegion[target.region_id]) {
-          totalTripsByRegion[target.region_id] +=
-            stationActivityById[target.station_id];
-        } else {
-          totalTripsByRegion[target.region_id] =
-            stationActivityById[target.station_id];
-        }
+  data.forEach(function(trip) {
+    var result = stations.filter(function(station) {
+      return trip.start_station_id === station.station_id;
+    });
+    var regionName;
+    if (result[0]) {
+      if (
+        (result[0].region_id && result[0].region_id === 12) ||
+        result[0].region_id === 13 ||
+        result[0].region_id === 14
+      ) {
+        regionName = "East Bay";
+      } else if (result[0].region_id === 3) {
+        regionName = "San Francisco";
+      } else if (result[0].region_id === 5) {
+        regionName = "San Jose";
       }
     }
-  }
+    trip.region = regionName !== undefined ? regionName : null;
+  });
+
+  var tripsByDayAndRegion = d3
+    .nest()
+    .key(function(d) {
+      return d.start_time.split(" ")[0];
+    })
+    .sortKeys(function(a, b) {
+      if (moment(a).isBefore(moment(b))) {
+        return -1;
+      } else if (moment(a).isSame(moment(b))) {
+        return 0;
+      } else {
+        return 1;
+      }
+    })
+    .key(function(d) {
+      return d.region;
+    })
+    .rollup(function(v) {
+      return v.length;
+    })
+    .entries(data);
 
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {

@@ -2,6 +2,8 @@ const fs = require("fs");
 const d3 = require("d3");
 const _ = require("lodash");
 const readFiles = require("read-files-promise");
+const stations = require("../data/stationInformation.js").stations;
+const moment = require("moment");
 
 readFiles([
   "../data/201801.csv",
@@ -22,10 +24,21 @@ function onFulfilled(buffers) {
 
   let data = _.concat(...buffers);
 
-  let tripsByMonthByUserType = d3
+  /* ANALYSIS CODE GOES BELOW */
+
+  var tripsByDayAndGender = d3
     .nest()
     .key(function(d) {
-      return d.start_time.split(" ")[0].split("-")[1];
+      return d.start_time.split(" ")[0];
+    })
+    .sortKeys(function(a, b) {
+      if (moment(a).isBefore(moment(b))) {
+        return -1;
+      } else if (moment(a).isSame(moment(b))) {
+        return 0;
+      } else {
+        return 1;
+      }
     })
     .key(function(d) {
       return d.user_type;
@@ -35,22 +48,7 @@ function onFulfilled(buffers) {
     })
     .entries(data);
 
-  let tripsByCustomers = [];
-  let tripsBySubscribers = [];
-
-  for (let i = 0; i < tripsByMonthByUserType.length; i++) {
-    tripsByMonthByUserType[i].values.forEach(userType => {
-      if (userType.key === "Subscriber") {
-        tripsBySubscribers.push(userType.value);
-      } else if (userType.key === "Customer") {
-        tripsByCustomers.push(userType.value);
-      }
-    });
-  }
-  console.log("Subscribers", tripsBySubscribers);
-  console.log("Customers", tripsByCustomers);
-
-  /* ANALYSIS CODE GOES BELOW */
+  console.log(JSON.stringify(tripsByDayAndGender));
 
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {

@@ -1,8 +1,8 @@
 const fs = require("fs");
 const d3 = require("d3");
 const _ = require("lodash");
+const moment = require("moment");
 const readFiles = require("read-files-promise");
-const stationInformation = require("../data/stationInformation.js").stations;
 
 readFiles([
   "../data/201801.csv",
@@ -25,35 +25,21 @@ function onFulfilled(buffers) {
 
   /* ANALYSIS CODE GOES BELOW */
 
-  let max = undefined;
-
-  data = data.filter(trip => {
-    return trip.start_station_id !== "NULL" && trip.end_station_id !== "NULL";
-  });
-
-  var tripCounts = d3
+  var activityByDayAndHour = d3
     .nest()
     .key(function(d) {
-      return d.start_station_id;
+      return moment(d.start_time.split(" ")[0]).day();
     })
     .key(function(d) {
-      return d.end_station_id;
+      console.log(d.start_time.split(" ")[1].substring(0, 8));
+      return moment(d.start_time.split(" ")[1].substring(0, 8)).hour();
     })
     .rollup(function(v) {
-      if (max === undefined || max < v.length) max = v.length;
-      if (v.length > 150) {
-        return {
-          start_lat: v[0].start_station_latitude,
-          start_lng: v[0].start_station_longitude,
-          end_lat: v[0].end_station_latitude,
-          end_lng: v[0].end_station_longitude,
-          value: v.length
-        };
-      }
+      return v.length;
     })
-    .object(data);
+    .entries(data);
+  console.log(JSON.stringify(activityByDayAndHour));
 
-  console.log(JSON.stringify(tripCounts));
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {
   //   console.log("File successfully written!");
