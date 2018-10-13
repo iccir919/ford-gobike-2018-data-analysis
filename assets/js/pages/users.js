@@ -303,6 +303,7 @@ var tripsByAgeAndGenderConfig = {
       mode: "nearest",
       intersect: true
     },
+    maintainAspectRatio: false,
     scales: {
       xAxes: [
         {

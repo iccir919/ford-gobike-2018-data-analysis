@@ -6139,21 +6139,21 @@ var regionsComparisonData = {
   datasets: [
     {
       label: "Station interactions",
-      yAxisID: 'y-axis-1',
+      yAxisID: "y-axis-1",
       data: [1754607, 108146, 338834, 164217, 22834],
-      backgroundColor: window.chartColors.lightDarkestGreen,
+      backgroundColor: window.chartColors.lightDarkestGreen
     },
     {
       label: "Number of stations",
-      yAxisID: 'y-axis-2',
+      yAxisID: "y-axis-2",
       data: [144, 45, 80, 37, 10],
-      backgroundColor: window.chartColors.darkBlue,
+      backgroundColor: window.chartColors.darkBlue
     }
   ]
 };
 
 tripsByDayAndGender.forEach(day => {
-  genderData.labels.push(moment(day.key, "YYYY-MM-DD").format("MM-DD-YYYY"));
+  genderData.labels.push(moment(day.key, "YYYY-MM-DD"));
   for (var i = 0; i < day.values.length; i++) {
     if (day.values[i].key !== "" && day.values[i].key !== "Other") {
       var target = genderData.datasets.find(
@@ -6168,7 +6168,7 @@ tripsByDayAndGender.forEach(day => {
 });
 
 tripsByDayAndMemberTypeData.forEach(day => {
-  memberTypeData.labels.push(moment(day.key).format("MM-DD-YYYY"));
+  memberTypeData.labels.push(moment(day.key, "YYYY-MM-DD"));
   for (var i = 0; i < day.values.length; i++) {
     var target = memberTypeData.datasets.find(
       dataset => dataset.label === day.values[i].key
@@ -6181,7 +6181,7 @@ tripsByDayAndMemberTypeData.forEach(day => {
 });
 
 tripsByDayByRegionData.forEach(day => {
-  regionData.labels.push(moment(day.key, "YYYY-MM-DD").format("MM-DD-YYYY"));
+  regionData.labels.push(moment(day.key, "YYYY-MM-DD"));
   for (var i = 0; i < day.values.length; i++) {
     if (day.values[i].key !== "null") {
       var target = regionData.datasets.find(
@@ -6224,6 +6224,7 @@ window.onload = function() {
         display: true,
         text: "Trips by Day and Region"
       },
+      maintainAspectRatio: false,
       tooltips: {
         mode: "index",
         intersect: false,
@@ -6241,10 +6242,12 @@ window.onload = function() {
           footer: function(tooltipItems, data) {
             var sum = 0;
             tooltipItems.forEach(function(tooltipItem) {
-              sum += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y;
+              sum +=
+                data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
+                  .y;
             });
-            return 'Sum: ' + sum.toLocaleString() + " trips";
-          },
+            return "Sum: " + sum.toLocaleString() + " trips";
+          }
         }
       },
       responsive: true,
@@ -6267,31 +6270,43 @@ window.onload = function() {
     }
   });
 
-  var ctx = document.getElementById('stationInteractionChart').getContext('2d');
+  var ctx = document.getElementById("stationInteractionChart").getContext("2d");
   window.interactionChart = new Chart(ctx, {
-    type: 'bar',
+    type: "bar",
     data: regionsComparisonData,
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       tooltips: {
-        mode: 'index',
+        mode: "index",
         intersect: true
       },
       scales: {
-        yAxes: [{
-          type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-          display: true,
-          position: 'left',
-          id: 'y-axis-1',
-        }, {
-          type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-          display: true,
-          position: 'right',
-          id: 'y-axis-2',
-          gridLines: {
-            drawOnChartArea: false
+        yAxes: [
+          {
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: true,
+            position: "left",
+            id: "y-axis-1"
+          },
+          {
+            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+            display: true,
+            position: "right",
+            id: "y-axis-2",
+            gridLines: {
+              drawOnChartArea: false
+            }
           }
-        }],
+        ],
+        xAxes: [
+          {
+            display: true,
+            ticks: {
+              autoSkip: false
+            }
+          }
+        ]
       }
     }
   });

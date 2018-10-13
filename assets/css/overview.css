@@ -4,6 +4,16 @@ canvas {
   -ms-user-select: none;
 }
 
-#bikeUsage {
-  height: 100%;
+.by-day-chart-container {
+  position: relative;
+  margin: auto;
+  height: 80vh;
+  width: 100%;
+}
+
+.interaction-chart-container {
+  position: relative;
+  margin: auto;
+  height: 60vh;
+  width: 100%;
 }
