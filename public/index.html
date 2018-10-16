@@ -33,7 +33,7 @@
         <div class="sidebar" data-color="blue" data-image="../assets/img/sidebar-6.jpg">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com">
+                    <a href="">
                         <img src="../assets/img/ford-gobike-logo.png" class="img-fluid" alt="logo" />
                     </a>
                 </div>
@@ -80,12 +80,12 @@
                         <div class="col">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Trips By Day</h4>
+                                    <h4 class="card-title">Trips on the Ford GoBike System</h4>
                                 </div>
                                 <div class="by-day-chart-container card-body">
                                     <canvas id="trips-by-day"></canvas>
                                 </div>
-                                <div class="card-footer ">
+                                <div class="card-footer">
                                     <div class="row">
                                         Data Selection:
                                         <select id="subject">
@@ -93,7 +93,12 @@
                                             <option value="gender">By gender</option>
                                             <option value="memberType">By member type</option>
                                         </select>
-                                        <button class="btn btn-info btn-fill" id="update">update</button>
+                                        <select id="period">
+                                            <option value="day">By day</option>
+                                            <option value="week">By week</option>
+                                            <option value="month" selected>By month</option>
+                                        </select>
+                                        <button class="btn btn-sm btn-info btn-fill" id="update">update</button>
                                     </div>
                                 </div>
                             </div>

@@ -26,19 +26,28 @@ function onFulfilled(buffers) {
 
   /* ANALYSIS CODE GOES BELOW */
 
-  var tripsByDayAndGender = d3
+  var tripsByMemberType = d3
     .nest()
+    // .key(function(d) {
+    //   return d.start_time.split(" ")[0];
+    // })
+    // .sortKeys(function(a, b) {
+    //   if (moment(a).isBefore(moment(b))) {
+    //     return -1;
+    //   } else if (moment(a).isSame(moment(b))) {
+    //     return 0;
+    //   } else {
+    //     return 1;
+    //   }
+    // })
+    // .key(function(d) {
+    //   return d.start_time.split(" ")[0].split("-")[1];
+    // })
     .key(function(d) {
-      return d.start_time.split(" ")[0];
+      return moment(d.start_time.split(" ")[0]).week();
     })
     .sortKeys(function(a, b) {
-      if (moment(a).isBefore(moment(b))) {
-        return -1;
-      } else if (moment(a).isSame(moment(b))) {
-        return 0;
-      } else {
-        return 1;
-      }
+      return a - b;
     })
     .key(function(d) {
       return d.user_type;
@@ -48,7 +57,7 @@ function onFulfilled(buffers) {
     })
     .entries(data);
 
-  console.log(JSON.stringify(tripsByDayAndGender));
+  console.log(JSON.stringify(tripsByMemberType));
 
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {

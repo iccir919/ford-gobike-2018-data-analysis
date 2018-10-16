@@ -6081,7 +6081,7 @@ var tripsByDayAndGender = [
   },
 */
 
-var regionData = {
+var regionDataByDay = {
   labels: [],
   datasets: [
     {
@@ -6102,7 +6102,202 @@ var regionData = {
   ]
 };
 
-var genderData = {
+var regionDataByWeek = {
+  labels: [
+    "Dec 31st to Jan 6th",
+    "Jan 7th to Jan 13th",
+    "Jan 14th to Jan 20th",
+    "Jan 21st to Jan 27th",
+    "Jan 28th to Feb 3rd",
+    "Feb 4th to Feb 10th",
+    "Feb 11th to Feb 17th",
+    "Feb 18th to Feb 24th",
+    "Feb 25th to Mar 3rd",
+    "Mar 4th to Mar 10th",
+    "Mar 11th to Mar 17th",
+    "Mar 18th to Mar 24th",
+    "Mar 25th to Mar 31st",
+    "Apr 1st to Apr 7th",
+    "Apr 8th to Apr 14th",
+    "Apr 15th to Apr 21st",
+    "Apr 22nd to Apr 28th",
+    "Apr 29th to May 5th",
+    "May 6th to May 12th",
+    "May 13th to May 19th",
+    "May 20th to May 26th",
+    "May 27th to Jun 2nd",
+    "Jun 3rd to Jun 9th",
+    "Jun 10th to Jun 16th",
+    "Jun 17th to Jun 23rd",
+    "Jun 24th to Jun 30th",
+    "Jul 1st to Jul 7th",
+    "Jul 8th to Jul 14th",
+    "Jul 15th to Jul 21st",
+    "Jul 22nd to Jul 28th",
+    "Jul 29th to Aug 4th",
+    "Aug 5th to Aug 11th",
+    "Aug 12th to Aug 18th",
+    "Aug 19th to Aug 25th",
+    "Aug 26th to Sep 1st"
+  ],
+  datasets: [
+    {
+      label: "San Francisco",
+      backgroundColor: window.chartColors.blue,
+      data: [
+        11268,
+        14707,
+        16154,
+        17597,
+        20746,
+        21942,
+        20212,
+        16057,
+        15115,
+        19462,
+        15791,
+        16898,
+        21932,
+        18113,
+        21228,
+        20480,
+        26386,
+        29315,
+        30735,
+        29933,
+        29730,
+        29575,
+        33061,
+        33516,
+        33521,
+        35216,
+        27035,
+        34864,
+        34271,
+        33820,
+        30615,
+        31636,
+        30250,
+        29845,
+        26368
+      ]
+    },
+    {
+      label: "East Bay",
+      backgroundColor: window.chartColors.darkerGreen,
+      data: [
+        2860,
+        3782,
+        4573,
+        4724,
+        5748,
+        6104,
+        5897,
+        4664,
+        4512,
+        5635,
+        4657,
+        5198,
+        6384,
+        5882,
+        7086,
+        6578,
+        7096,
+        7623,
+        8524,
+        8410,
+        7945,
+        8960,
+        9691,
+        9937,
+        9927,
+        10495,
+        9169,
+        10782,
+        10903,
+        10548,
+        10241,
+        10080,
+        9793,
+        9959,
+        8590
+      ]
+    },
+    {
+      label: "San Jose",
+      backgroundColor: window.chartColors.yellow,
+      data: [
+        477,
+        540,
+        689,
+        787,
+        1150,
+        1386,
+        1429,
+        1197,
+        1141,
+        1691,
+        1447,
+        1564,
+        1476,
+        1918,
+        1891,
+        1785,
+        1917,
+        1905,
+        2061,
+        1936,
+        1705,
+        1538,
+        2002,
+        1495,
+        1609,
+        1508,
+        1620,
+        1718,
+        1697,
+        1736,
+        1691,
+        1663,
+        1656,
+        2095,
+        1966
+      ]
+    }
+  ]
+};
+
+var regionDataByMonth = {
+  labels: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August"
+  ],
+  datasets: [
+    {
+      label: "San Francisco",
+      backgroundColor: window.chartColors.blue,
+      data: [71609, 77083, 79189, 93192, 133653, 143964, 142884, 135820]
+    },
+    {
+      label: "East Bay",
+      backgroundColor: window.chartColors.darkerGreen,
+      data: [19069, 22236, 23433, 28463, 36838, 42853, 45541, 44524]
+    },
+    {
+      label: "San Jose",
+      backgroundColor: window.chartColors.yellow,
+      data: [3147, 5282, 6545, 7976, 8214, 7080, 7487, 8355]
+    }
+  ]
+};
+
+var genderDataByDay = {
   labels: [],
   datasets: [
     {
@@ -6118,7 +6313,84 @@ var genderData = {
   ]
 };
 
-var memberTypeData = {
+var genderDataByWeek = {
+  labels: [
+    "Dec 31st to Jan 6th",
+    "Jan 7th to Jan 13th",
+    "Jan 14th to Jan 20th",
+    "Jan 21st to Jan 27th",
+    "Jan 28th to Feb 3rd",
+    "Feb 4th to Feb 10th",
+    "Feb 11th to Feb 17th",
+    "Feb 18th to Feb 24th",
+    "Feb 25th to Mar 3rd",
+    "Mar 4th to Mar 10th",
+    "Mar 11th to Mar 17th",
+    "Mar 18th to Mar 24th",
+    "Mar 25th to Mar 31st",
+    "Apr 1st to Apr 7th",
+    "Apr 8th to Apr 14th",
+    "Apr 15th to Apr 21st",
+    "Apr 22nd to Apr 28th",
+    "Apr 29th to May 5th",
+    "May 6th to May 12th",
+    "May 13th to May 19th",
+    "May 20th to May 26th",
+    "May 27th to Jun 2nd",
+    "Jun 3rd to Jun 9th",
+    "Jun 10th to Jun 16th",
+    "Jun 17th to Jun 23rd",
+    "Jun 24th to Jun 30th",
+    "Jul 1st to Jul 7th",
+    "Jul 8th to Jul 14th",
+    "Jul 15th to Jul 21st",
+    "Jul 22nd to Jul 28th",
+    "Jul 29th to Aug 4th",
+    "Aug 5th to Aug 11th",
+    "Aug 12th to Aug 18th",
+    "Aug 19th to Aug 25th",
+    "Aug 26th to Sep 1st"
+  ],
+  datasets: [
+    {
+      label: "Male",
+      backgroundColor: window.chartColors.darkBlue,
+      data: [9989, 13486, 14909, 16180, 19233, 20386, 19262, 15239, 14952, 18782, 15064, 16471, 19925, 17847, 20784, 20003, 24679, 27062, 28210, 27695, 27073, 26957, 30467, 30813, 31406, 32810, 25774, 32669, 32392, 32337, 29531, 30103, 28732, 29267, 25769]
+    },
+    {
+      label: "Female",
+      backgroundColor: window.chartColors.red,
+      data: [3203, 4030, 4603, 5072, 6136, 6849, 6376, 5105, 4736, 6217, 5153, 5402, 7217, 6333, 7238, 6683, 8141, 8836, 9879, 9604, 9191, 9407, 10531, 10754, 11094, 11597, 9366, 11646, 11420, 11149, 10886, 10898, 10550, 10282, 9294]
+    }
+  ]
+};
+
+var genderDataByMonth = {
+  labels: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August"
+  ],
+  datasets: [
+    {
+      label: "Male",
+      backgroundColor: window.chartColors.darkBlue,
+      data: [65508, 73068, 75302, 89575, 122783, 133448, 135510, 131064]
+    },
+    {
+      label: "Female",
+      backgroundColor: window.chartColors.red,
+      data: [20298, 24231, 25570, 30482, 42011, 46795, 48214, 47277]
+    }
+  ]
+};
+
+var memberTypeDataByDay = {
   labels: [],
   datasets: [
     {
@@ -6130,6 +6402,83 @@ var memberTypeData = {
       label: "Customer",
       backgroundColor: window.chartColors.lightDarkerGreen,
       data: []
+    }
+  ]
+};
+
+var memberTypeDataByWeek = {
+  labels: [
+    "Dec 31st to Jan 6th",
+    "Jan 7th to Jan 13th",
+    "Jan 14th to Jan 20th",
+    "Jan 21st to Jan 27th",
+    "Jan 28th to Feb 3rd",
+    "Feb 4th to Feb 10th",
+    "Feb 11th to Feb 17th",
+    "Feb 18th to Feb 24th",
+    "Feb 25th to Mar 3rd",
+    "Mar 4th to Mar 10th",
+    "Mar 11th to Mar 17th",
+    "Mar 18th to Mar 24th",
+    "Mar 25th to Mar 31st",
+    "Apr 1st to Apr 7th",
+    "Apr 8th to Apr 14th",
+    "Apr 15th to Apr 21st",
+    "Apr 22nd to Apr 28th",
+    "Apr 29th to May 5th",
+    "May 6th to May 12th",
+    "May 13th to May 19th",
+    "May 20th to May 26th",
+    "May 27th to Jun 2nd",
+    "Jun 3rd to Jun 9th",
+    "Jun 10th to Jun 16th",
+    "Jun 17th to Jun 23rd",
+    "Jun 24th to Jun 30th",
+    "Jul 1st to Jul 7th",
+    "Jul 8th to Jul 14th",
+    "Jul 15th to Jul 21st",
+    "Jul 22nd to Jul 28th",
+    "Jul 29th to Aug 4th",
+    "Aug 5th to Aug 11th",
+    "Aug 12th to Aug 18th",
+    "Aug 19th to Aug 25th",
+    "Aug 26th to Sep 1st"
+  ],
+  datasets: [
+    {
+      label: "Subscriber",
+      backgroundColor: window.chartColors.blue,
+      data: [12631, 16935, 18687, 20431, 23942, 25580, 24298, 19250, 18961, 23889, 19271, 20581, 24934, 22508, 25786, 24497, 29863, 32450, 33833, 34138, 33387, 32705, 37476, 37989, 38653, 39675, 31009, 40026, 39601, 39259, 36537, 36622, 35302, 35833, 32497]
+    },
+    {
+      label: "Customer",
+      backgroundColor: window.chartColors.lightDarkerGreen,
+      data: [2146, 2270, 2955, 2896, 4093, 4425, 3799, 3144, 2252, 3440, 3057, 3554, 5481, 3905, 4869, 4578, 5815, 6660, 7704, 6146, 6001, 7371, 7279, 7339, 7296, 8339, 7471, 7960, 7961, 7778, 6940, 7808, 7235, 6705, 4840]
+    }
+  ]
+};
+
+var memberTypeDataByMonth = {
+  labels: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August"
+  ],
+  datasets: [
+    {
+      label: "Subscriber",
+      backgroundColor: window.chartColors.blue,
+      data: [82458, 91857, 95075, 109989, 149886, 163085, 165243, 161443]
+    },
+    {
+      label: "Customer",
+      backgroundColor: window.chartColors.lightDarkerGreen,
+      data: [12344, 14861, 16307, 21180, 29239, 32883, 33979, 30719]
     }
   ]
 };
@@ -6153,10 +6502,10 @@ var regionsComparisonData = {
 };
 
 tripsByDayAndGender.forEach(day => {
-  genderData.labels.push(moment(day.key, "YYYY-MM-DD"));
+  genderDataByDay.labels.push(moment(day.key, "YYYY-MM-DD"));
   for (var i = 0; i < day.values.length; i++) {
     if (day.values[i].key !== "" && day.values[i].key !== "Other") {
-      var target = genderData.datasets.find(
+      var target = genderDataByDay.datasets.find(
         dataset => dataset.label === day.values[i].key
       );
       target.data.push({
@@ -6168,9 +6517,9 @@ tripsByDayAndGender.forEach(day => {
 });
 
 tripsByDayAndMemberTypeData.forEach(day => {
-  memberTypeData.labels.push(moment(day.key, "YYYY-MM-DD"));
+  memberTypeDataByDay.labels.push(moment(day.key, "YYYY-MM-DD"));
   for (var i = 0; i < day.values.length; i++) {
-    var target = memberTypeData.datasets.find(
+    var target = memberTypeDataByDay.datasets.find(
       dataset => dataset.label === day.values[i].key
     );
     target.data.push({
@@ -6181,10 +6530,12 @@ tripsByDayAndMemberTypeData.forEach(day => {
 });
 
 tripsByDayByRegionData.forEach(day => {
-  regionData.labels.push(moment(day.key, "YYYY-MM-DD"));
+  regionDataByDay.labels.push(
+    moment(day.key, "YYYY-MM-DD").format("MM-DD-YYYY")
+  );
   for (var i = 0; i < day.values.length; i++) {
     if (day.values[i].key !== "null") {
-      var target = regionData.datasets.find(
+      var target = regionDataByDay.datasets.find(
         dataset => dataset.label === day.values[i].key
       );
       target.data.push({
@@ -6197,32 +6548,57 @@ tripsByDayByRegionData.forEach(day => {
 
 document.getElementById("update").addEventListener("click", function() {
   var subject = document.getElementById("subject").value;
-  // var type = document.getElementById('type').value;
+  var period = document.getElementById("period").value;
+  console.log(period);
 
   if (subject === "region") {
-    window.byDay.config.data = regionData;
-    window.byDay.options.title.text = "Trips by Day and Region";
-    window.byDay.update();
+    if (period === "day") {
+      window.totalTrips.config.data = regionDataByDay;
+      window.totalTrips.options.title.text = "Trips by Day and Region";
+    } else if(period === "week"){
+      window.totalTrips.config.data = regionDataByWeek;
+      window.totalTrips.options.title.text = "Trips by Week and Region";
+    } else if(period === "month"){
+      window.totalTrips.config.data = regionDataByMonth;
+      window.totalTrips.options.title.text = "Trips by Month and Region";
+    }
   } else if (subject === "gender") {
-    window.byDay.config.data = genderData;
-    window.byDay.options.title.text = "Trips by Day and Gender";
-    window.byDay.update();
+    if (period === "day") {
+      window.totalTrips.config.data = genderDataByDay;
+      window.totalTrips.options.title.text = "Trips by Day and Gender";
+    } else if(period === "week"){
+      window.totalTrips.config.data = genderDataByWeek;
+      window.totalTrips.options.title.text = "Trips by Week and Gender";
+    } else if(period === "month"){
+      window.totalTrips.config.data = genderDataByMonth;
+      window.totalTrips.options.title.text = "Trips by Month and Gender";
+    }
+
   } else if (subject === "memberType") {
-    window.byDay.config.data = memberTypeData;
-    window.byDay.options.title.text = "Trips by Day and Member Type";
-    window.byDay.update();
+    if (period === "day") {
+      window.totalTrips.config.data = memberTypeDataByDay;
+      window.totalTrips.options.title.text = "Trips by Day and Member Type";
+    } else if(period === "week"){
+      window.totalTrips.config.data = memberTypeDataByWeek;
+      window.totalTrips.options.title.text = "Trips by Week and Member Type";
+    } else if(period === "month"){
+      window.totalTrips.config.data = memberTypeDataByMonth;
+      window.totalTrips.options.title.text = "Trips by Month and Member Type";
+    }
+
   }
+  window.totalTrips.update();
 });
 
 window.onload = function() {
   var ctx = document.getElementById("trips-by-day").getContext("2d");
-  window.byDay = new Chart(ctx, {
+  window.totalTrips = new Chart(ctx, {
     type: "bar",
-    data: regionData,
+    data: regionDataByMonth,
     options: {
       title: {
         display: true,
-        text: "Trips by Day and Region"
+        text: "Trips by Month and Region"
       },
       maintainAspectRatio: false,
       tooltips: {
@@ -6236,15 +6612,16 @@ window.onload = function() {
             }
             return label;
           },
-          title: function(tooltipItems, data) {
-            return moment(tooltipItems[0].xLabel).format("MMM Do, YYYY");
-          },
           footer: function(tooltipItems, data) {
             var sum = 0;
             tooltipItems.forEach(function(tooltipItem) {
-              sum +=
-                data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
-                  .y;
+              if(data.labels.length > 52){
+                sum +=
+                sum += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y;
+              } else {
+                sum +=
+                sum += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+              }
             });
             return "Sum: " + sum.toLocaleString() + " trips";
           }
@@ -6254,24 +6631,28 @@ window.onload = function() {
       scales: {
         xAxes: [
           {
-            type: "time",
-            stacked: true,
-            time: {
-              unit: "month"
-            }
+            stacked: true
           }
         ],
         yAxes: [
           {
-            stacked: true
+            stacked: true,
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Total number of trips"
+            },
           }
         ]
       }
     }
   });
 
-  var ctx = document.getElementById("stationInteractionChart").getContext("2d");
-  window.interactionChart = new Chart(ctx, {
+  var interactionCtx = document
+    .getElementById("stationInteractionChart")
+    .getContext("2d");
+
+  window.interactionChart = new Chart(interactionCtx, {
     type: "bar",
     data: regionsComparisonData,
     options: {
