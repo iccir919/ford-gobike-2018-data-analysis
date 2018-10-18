@@ -17,6 +17,9 @@ var fordGoBikeConfig = {
     labels: ["Female", "Male"]
   },
   options: {
+    legend: {
+      display: false
+    },
     responsive: true
   }
 };
@@ -34,6 +37,9 @@ var citiConfig = {
     labels: ["Female", "Male"]
   },
   options: {
+    legend: {
+      display: false
+    },
     responsive: true,
     tooltips: {
       mode: "index"
@@ -54,6 +60,9 @@ var divvyConfig = {
     labels: ["Female", "Male"]
   },
   options: {
+    legend: {
+      display: false
+    },
     responsive: true,
     tooltips: {
       mode: "index"
@@ -74,6 +83,9 @@ var blueBikesConfig = {
     labels: ["Female", "Male"]
   },
   options: {
+    legend: {
+      display: false
+    },
     responsive: true,
     tooltips: {
       mode: "index"
