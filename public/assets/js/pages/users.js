@@ -14,7 +14,7 @@ var fordGoBikeConfig = {
         label: "Ford GoBike share"
       }
     ],
-    labels: ["Female", "Male"]
+    labels: ["Trips by women", "Trips by men"]
   },
   options: {
     legend: {
@@ -34,7 +34,7 @@ var citiConfig = {
         label: "Citi Bike share"
       }
     ],
-    labels: ["Female", "Male"]
+    labels: ["Trips by women", "Trips by men"]
   },
   options: {
     legend: {
@@ -57,7 +57,7 @@ var divvyConfig = {
         label: "Divvy Bike share"
       }
     ],
-    labels: ["Female", "Male"]
+    labels: ["Trips by women", "Trips by men"]
   },
   options: {
     legend: {
@@ -80,7 +80,7 @@ var blueBikesConfig = {
         label: "Blue Bike share"
       }
     ],
-    labels: ["Female", "Male"]
+    labels: ["Trips by women", "Trips by men"]
   },
   options: {
     legend: {

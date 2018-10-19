@@ -86,18 +86,22 @@
                                     <canvas id="trips-by-day"></canvas>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="row">
-                                        Data Selection:
-                                        <select id="subject">
-                                            <option value="region">By region</option>
-                                            <option value="gender">By gender</option>
-                                            <option value="memberType">By member type</option>
-                                        </select>
-                                        <select id="period">
-                                            <option value="day">By day</option>
-                                            <option value="week">By week</option>
-                                            <option value="month" selected>By month</option>
-                                        </select>
+                                    <div class="form-inline">
+                                        <div class="form-group mb-2">
+                                            Data Selection:
+                                            <select id="subject">
+                                                <option value="region">By region</option>
+                                                <option value="gender">By gender</option>
+                                                <option value="memberType">By member type</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mx-3 mb-2">
+                                            <select id="period">
+                                                <option value="day">By day</option>
+                                                <option value="week">By week</option>
+                                                <option value="month" selected>By month</option>
+                                            </select>
+                                        </div>
                                         <button class="btn btn-sm btn-info btn-fill" id="update">update</button>
                                     </div>
                                 </div>

@@ -234,11 +234,11 @@ function getStationStatuses() {
         var content;
 
         if (difference > 1) {
-          content = difference + "bikes have arrived at ";
+          content = difference + " bikes have arrived at ";
         } else if (difference === 1) {
           content = "A bike has arrived at ";
         } else if (difference < -1) {
-          content = difference + "bikes have departed from ";
+          content = difference * -1 + " bikes have departed from ";
         } else if (difference === -1) {
           content = "A bike has departed from ";
         }
