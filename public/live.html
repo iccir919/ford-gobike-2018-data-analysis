@@ -73,32 +73,33 @@
             </nav>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-9 p-0">
-                        <div class="map-container">
-                            <div id="map"></div>
-                        </div>
-                    </div>
                     <div class="col-lg-3 p-0">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">View:</h4>
                             </div>
                             <div class="card-body">
-                                <div class="list-group list-group-flush">
-                                    <button href="#" class="list-group-item list-group-item-action active">Live</button>
-                                    <button href="#" class="list-group-item list-group-item-action">
+                                <div id="viewList" class="list-group list-group-flush">
+                                    <button class="list-group-item list-group-item-action active" id="list-bikes-available-list" data-toggle="list" href="#bikes-available"
+                                        role="tab" aria-controls="bikes-available">
                                         Bikes available
                                     </button>
-                                    <button href="#" class="list-group-item list-group-item-action">Docks available
+                                    <button class="list-group-item list-group-item-action" id="list-ebikes-available-list" data-toggle="list" href="#ebikes-available"
+                                        role="tab" aria-controls="ebikes-available">Electric
+                                        bikes available</button>
+                                    <button class="list-group-item list-group-item-action" id="list-docks-available-list" data-toggle="list" href="#docks-available"
+                                        role="tab" aria-controls="docks-available">
+                                        Docks available
                                     </button>
-                                    <button href="#" class="list-group-item list-group-item-action">Electric bikes available</button>
-                                    <button href="#" class="list-group-item list-group-item-action">Open/closed stations
-                                    </button>
-                                    <button href="#" class="list-group-item list-group-item-action">Bikes disabled</button>
-                                    <button href="#" class="list-group-item list-group-item-action">Docks disabled</button>
-                                    <button href="#" class="list-group-item list-group-item-action">Coming soon</button>
+                                    <button class="list-group-item list-group-item-action" id="list-bikes-disabled-list" data-toggle="list" href="#bikes-disabled"
+                                        role="tab" aria-controls="bikes-disabled">Bikes disabled</button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 p-0">
+                        <div class="map-container">
+                            <div id="map"></div>
                         </div>
                     </div>
                 </div>
@@ -146,8 +147,6 @@
 <script src="./assets/js/plugins/chart.js "></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="./assets/js/light-bootstrap-dashboard.js?v=2.0.1 " type="text/javascript "></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/mappa-mundi/dist/mappa.min.js" type="text/javascript"></script>
 <script src="./assets/js/pages/live.js "></script>
 
 </html>

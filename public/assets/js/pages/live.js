@@ -1,5 +1,7 @@
 var map, Popup;
 var markers = [];
+var stationStatuses = [];
+var listView = "bikes-available";
 
 var initGoogleMaps = function() {
   var myLatlng = new google.maps.LatLng(37.7749, -122.4194);
@@ -190,7 +192,6 @@ var initGoogleMaps = function() {
 
 $(document).ready(function() {
   initGoogleMaps();
-
   definePopupClass();
 
   $.getJSON(
@@ -203,68 +204,140 @@ $(document).ready(function() {
         var marker = new google.maps.Marker({
           position: latLng,
           title: station.name,
-          id: station.station_id
+          id: station.station_id,
+          label: ""
         });
-
         markers.push(marker);
-        marker.setMap(map);
       });
+      getStationStatuses();
     }
   );
 
-  setInterval(getStationStatuses, 10000);
+  $("#listView button").on("click", function(e) {
+    e.preventDefault();
+    $(this).tab("show");
+  });
+  setInterval(getStationStatuses, 700);
 });
 
 function getStationStatuses() {
   $.getJSON("https://gbfs.fordgobike.com/gbfs/en/station_status.json", function(
-    stationStauses
+    response
   ) {
-    stationStauses = stationStauses.data.stations;
-    $.each(stationStauses, function(key, station) {
-      var target = markers.find(function(marker) {
-        return marker.id === station.station_id;
-      });
-      if (
-        target.num_bikes_available &&
-        station.num_bikes_available !== target.num_bikes_available
-      ) {
-        var popupId = "popup" + target.id;
+    updateMarkers(response);
+  });
+}
+
+function updateMarkers(data) {
+  if (markers.length === 0) return;
+  stationStatuses = data.data.stations;
+  markers.forEach(function(marker) {
+    var target = stationStatuses.find(function(station) {
+      return marker.id === station.station_id;
+    });
+
+    if (listView === "bikes-available") {
+      if (marker.num_bikes_available) {
         var difference =
-          station.num_bikes_available - target.num_bikes_available;
-        var content;
+          target.num_bikes_available - marker.num_bikes_available;
+        if (difference !== 0) {
+          marker.setMap(null);
+          marker.label = target.num_bikes_available;
+          marker.setMap(map);
 
-        if (difference > 1) {
-          content = difference + " bikes have arrived at ";
-        } else if (difference === 1) {
-          content = "A bike has arrived at ";
-        } else if (difference < -1) {
-          content = difference * -1 + " bikes have departed from ";
-        } else if (difference === -1) {
-          content = "A bike has departed from ";
+          addLivePopups(difference, marker);
         }
-        content += target.title;
-        $(".map-container").append(
-          "<div id=" + popupId + ">" + content + "</div>"
-        );
-
-        var popup = new Popup(
-          target.position,
-          document.getElementById(popupId)
-        );
-        popup.setMap(map);
-
-        target.setAnimation(google.maps.Animation.BOUNCE);
-
-        setTimeout(function() {
-          target.setAnimation(null);
-        }, 700);
-
-        target.num_bikes_available = station.num_bikes_available;
       } else {
-        target.num_bikes_available = station.num_bikes_available;
+        if (target.num_bikes_available > 0) {
+          marker.label = target.num_bikes_available;
+          marker.setMap(map);
+        }
+      }
+    } else if (listView === "ebikes-available") {
+      if (marker.num_ebikes_available !== target.num_ebikes_available) {
+        if (target.num_ebikes_available > 0) {
+          marker.setMap(null);
+          marker.label = target.num_ebikes_available;
+          marker.setMap(map);
+        }
+      }
+    } else if (listView === "bikes-disabled") {
+      if (marker.num_bikes_disabled !== target.num_bikes_disabled) {
+        if (target.num_bikes_disabled > 0) {
+          marker.setMap(null);
+          marker.label = target.num_bikes_disabled;
+          marker.setMap(map);
+        }
+      }
+    }
+
+    marker.num_bikes_available = target.num_bikes_available;
+    marker.num_ebikes_available = target.num_ebikes_available;
+    marker.num_bikes_disabled = target.num_bikes_disabled;
+  });
+}
+
+function updateView() {
+  if (listView === "ebikes-available") {
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+      if (marker.num_ebikes_available > 0) {
+        marker.label = marker.num_ebikes_available;
+        marker.setMap(map);
       }
     });
-  });
+  } else if (listView === "bikes-available") {
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+      if (marker.num_bikes_available > 0) {
+        marker.label = marker.num_bikes_available;
+        marker.setMap(map);
+      }
+    });
+  } else if (listView === "bikes-disabled") {
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+      if (marker.num_bikes_disabled > 0) {
+        marker.label = marker.num_bikes_disabled;
+        marker.setMap(map);
+      }
+    });
+  }
+}
+
+$("#viewList button").on("click", function(e) {
+  e.preventDefault();
+  $(this).tab("show");
+
+  listView = $(this).attr("aria-controls");
+  updateView();
+});
+
+function addLivePopups(difference, marker) {
+  var popupId = "popup" + marker.id;
+  var content;
+
+  if (difference > 1) {
+    content = difference + " bikes have arrived at ";
+  } else if (difference === 1) {
+    content = "A bike has arrived at ";
+  } else if (difference < -1) {
+    content = difference * -1 + " bikes have departed from ";
+  } else if (difference === -1) {
+    content = "A bike has departed from ";
+  }
+  content += marker.title;
+  $(".map-container").append("<div id=" + popupId + ">" + content + "</div>");
+
+  var popup = new Popup(marker.position, document.getElementById(popupId));
+  popup.setMap(map);
+
+  marker.setAnimation(google.maps.Animation.BOUNCE);
+
+  setTimeout(function() {
+    marker.setAnimation(null);
+    popup.setMap(null);
+  }, 2500);
 }
 
 /** Defines the Popup class. */
