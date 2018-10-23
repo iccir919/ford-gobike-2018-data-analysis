@@ -22,22 +22,40 @@ function onFulfilled(buffers) {
 
   let data = _.concat(...buffers);
 
-  var mostTripsByDay = d3
+  // var mostTripsByDay = d3
+  //   .nest()
+  //   .key(function(d) {
+  //     return d.start_time.split(" ")[0];
+  //   })
+  //   .rollup(function(v) {
+  //     return v.length;
+  //   })
+  //   .entries(data);
+
+  // mostTripsByDay = mostTripsByDay.sort(function(a, b) {
+  //   return a.value - b.value;
+  // });
+  // console.log(JSON.stringify(mostTripsByDay));
+
+  var tripsOnPopularDay = data.filter(function(trip) {
+    return "2018-06-26" === trip.start_time.split(" ")[0];
+  });
+
+  var tripsByBike = d3
     .nest()
     .key(function(d) {
-      return d.start_time.split(" ")[0];
+      return d.bike_id;
     })
     .rollup(function(v) {
       return v.length;
     })
-    .entries(data);
+    .entries(tripsOnPopularDay);
 
-  mostTripsByDay = mostTripsByDay.sort(function(a, b) {
+  tripsByBike = tripsByBike.sort(function(a, b) {
     return a.value - b.value;
   });
-  console.log(JSON.stringify(mostTripsByDay));
 
-  /* ANALYSIS CODE GOES BELOW */
+  console.log(JSON.stringify(tripsByBike));
 
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {
