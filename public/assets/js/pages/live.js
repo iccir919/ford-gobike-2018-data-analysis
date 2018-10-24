@@ -268,12 +268,21 @@ function updateMarkers(data) {
           marker.label = target.num_bikes_disabled;
           marker.setMap(map);
         }
+      } else if (listView === "docks-available") {
+        if (marker.num_docks_available !== target.num_docks_available) {
+          if (target.num_docks_available > 0) {
+            marker.setMap(null);
+            marker.label = target.num_docks_available;
+            marker.setMap(map);
+          }
+        }
       }
     }
 
     marker.num_bikes_available = target.num_bikes_available;
     marker.num_ebikes_available = target.num_ebikes_available;
     marker.num_bikes_disabled = target.num_bikes_disabled;
+    marker.num_docks_available = target.num_docks_available;
   });
 }
 
@@ -299,6 +308,14 @@ function updateView() {
       marker.setMap(null);
       if (marker.num_bikes_disabled > 0) {
         marker.label = marker.num_bikes_disabled;
+        marker.setMap(map);
+      }
+    });
+  } else if (listView === "docks-available") {
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+      if (marker.num_docks_available > 0) {
+        marker.label = marker.num_docks_available;
         marker.setMap(map);
       }
     });
