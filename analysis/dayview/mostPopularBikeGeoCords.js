@@ -41,19 +41,38 @@ function onFulfilled(buffers) {
         return -1;
       }
     });
-  let lastEntry = bikeTripsOn3977[bikeTripsOn3977.length - 1];
-  let allCoordinates = bikeTripsOn3977.map(function(trip) {
-    return [
-      Number(trip.start_station_latitude),
-      Number(trip.start_station_longitude)
-    ];
-  });
-  allCoordinates.push([
-    Number(lastEntry.end_station_latitude),
-    Number(lastEntry.end_station_longitude)
-  ]);
+  // let allCoordinates = [];
+  // bikeTripsOn3977.forEach(function(trip) {
+  //   allCoordinates.push([
+  //     Number(trip.start_station_latitude),
+  //     Number(trip.start_station_longitude)
+  //   ]);
+  //   allCoordinates.push([
+  //     Number(trip.end_station_latitude),
+  //     Number(trip.end_station_longitude)
+  //   ]);
+  // });
 
-  console.log(JSON.stringify(allCoordinates));
+  // console.log(JSON.stringify(allCoordinates));
+
+  let tripsOn3977 = bikeTripsOn3977.map(function(trip) {
+    let age;
+    if (trip.member_birth_year) {
+      age = Number(moment().format("YYYY")) - Number(trip.member_birth_year);
+      age += "";
+    }
+    return {
+      startTime: moment(trip.start_time).format("h:mm:ss a"),
+      startStationName: trip.start_station_name,
+      endTime: moment(trip.end_time).format("h:mm:ss a"),
+      endStationName: trip.end_station_name,
+      memberAge: age ? age : undefined,
+      memberType: trip.user_type ? trip.user_type : undefined,
+      memberGender: trip.member_gender ? trip.member_gender : undefined
+    };
+  });
+
+  console.log(JSON.stringify(tripsOn3977));
 
   /* WANT TO MAKE A FILE? */
   // fs.writeFile("file_name.json", result, function(err) {
