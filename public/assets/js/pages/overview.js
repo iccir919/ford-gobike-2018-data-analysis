@@ -6616,10 +6616,8 @@ window.onload = function() {
             var sum = 0;
             tooltipItems.forEach(function(tooltipItem) {
               if(data.labels.length > 52){
-                sum +=
                 sum += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y;
               } else {
-                sum +=
                 sum += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
               }
             });

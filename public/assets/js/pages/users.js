@@ -20,7 +20,19 @@ var fordGoBikeConfig = {
     legend: {
       display: false
     },
-    responsive: true
+    responsive: true,
+    tooltips: {
+      mode: "index",
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return (
+            data.labels[tooltipItem.index] +
+            ": " +
+            data.datasets[0].data[tooltipItem.index].toLocaleString()
+          );
+        }
+      }
+    }
   }
 };
 
@@ -42,7 +54,16 @@ var citiConfig = {
     },
     responsive: true,
     tooltips: {
-      mode: "index"
+      mode: "index",
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return (
+            data.labels[tooltipItem.index] +
+            ": " +
+            data.datasets[0].data[tooltipItem.index].toLocaleString()
+          );
+        }
+      }
     }
   }
 };
@@ -65,7 +86,16 @@ var divvyConfig = {
     },
     responsive: true,
     tooltips: {
-      mode: "index"
+      mode: "index",
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return (
+            data.labels[tooltipItem.index] +
+            ": " +
+            data.datasets[0].data[tooltipItem.index].toLocaleString()
+          );
+        }
+      }
     }
   }
 };
@@ -88,7 +118,16 @@ var blueBikesConfig = {
     },
     responsive: true,
     tooltips: {
-      mode: "index"
+      mode: "index",
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return (
+            data.labels[tooltipItem.index] +
+            ": " +
+            data.datasets[0].data[tooltipItem.index].toLocaleString()
+          );
+        }
+      }
     }
   }
 };
