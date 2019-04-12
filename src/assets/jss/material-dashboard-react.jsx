@@ -90,7 +90,7 @@ const grayColor = [
   "#eee",
   "#e7e7e7"
 ];
-const blackColor = "#000";
+const blackColor = "#636568";
 const whiteColor = "#FFF";
 
 const boxShadow = {
