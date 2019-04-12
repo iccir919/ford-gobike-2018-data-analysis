@@ -1,7 +1,7 @@
 {
-  "name": "material-dashboard-react",
+  "name": "ford-goBike-dashboard",
   "version": "1.6.0",
-  "description": "Material Dashboard React. Coded by Creative Tim",
+  "description": "Ford GoBike 2018 Data Dashboard",
   "private": false,
   "main": "dist/index.js",
   "dependencies": {
@@ -34,15 +34,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/material-dashboard-react.git"
+    "url": "git+https://github.com/iccir919/ford-gobike-dashboard"
   },
   "keywords": [],
-  "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com/)",
+  "author": "Neil Ricci <neil.ricci9@gmail.com> (https://neilricci.github.io/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/creativetimofficial/material-dashboard-react/issues"
+    "url": "https://github.com/iccir919/ford-gobike-dashboard/issues"
   },
-  "homepage": "https://creativetimofficial.github.io/material-dashboard-react/#/dashboard",
+  "homepage": "",
   "optionalDependencies": {
     "@types/googlemaps": "3.30.16",
     "@types/markerclustererplus": "2.1.33",
