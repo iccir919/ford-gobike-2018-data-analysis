@@ -1,0 +1,1 @@
+SELECT avg(EXTRACT(MINUTE FROM age(end_time, start_time))) FROM trips_2018;
