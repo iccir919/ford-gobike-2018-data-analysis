@@ -1,0 +1,1 @@
+SELECT EXTRACT(DOW FROM start_time::DATE) AS day, COUNT(*) AS count FROM trips_2018 GROUP BY EXTRACT(DOW FROM start_time::DATE);
