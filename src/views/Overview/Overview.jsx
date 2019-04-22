@@ -7,25 +7,19 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Accessibility from "@material-ui/icons/Accessibility";
-import BugReport from "@material-ui/icons/BugReport";
-import Code from "@material-ui/icons/Code";
-import Cloud from "@material-ui/icons/Cloud";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
-import Table from "components/Table/Table.jsx";
-import Tasks from "components/Tasks/Tasks.jsx";
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 
-import { bugs, website, server } from "variables/general.jsx";
+import avatar from "assets/img/gobike_pier.jpg";
 
 import { dailySalesChart, emailsSubscriptionChart } from "variables/charts.jsx";
 
-import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
+import dashboardStyle from "assets/jss/material-dashboard-react/views/overviewStyle.jsx";
 
 class Dashboard extends React.Component {
   state = {
@@ -42,6 +36,9 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
     return (
       <div>
+        <div className={classes.heroContent}>
+          <img className={classes.heroImage} src={avatar} alt="..." />
+        </div>
         <GridContainer>
           <GridItem xs={12} sm={6} lg={3}>
             <Card>
